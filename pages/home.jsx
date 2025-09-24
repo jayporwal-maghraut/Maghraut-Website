@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 // Future: Import your page components here
 // import ContactPage from "./pages/ContactPage";
 // import AboutPage from "./pages/AboutPage";
@@ -16,44 +16,17 @@ import {
 
 const HomePage = () => {
   const [activeSection, setActiveSection] = useState("home");
-  const [chatMessages, setChatMessages] = useState([
-    { text: "Hello! I'm your career assistant. How can I help you today?", sender: "bot" }
-  ]);
-  const [inputMessage, setInputMessage] = useState("");
-  const chatContainerRef = useRef(null);
 
-  const handleSendMessage = () => {
-    if (inputMessage.trim()) {
-      setChatMessages([...chatMessages, { text: inputMessage, sender: "user" }]);
-      setInputMessage("");
-      // Simulate bot response
-      setTimeout(() => {
-        setChatMessages(prev => [...prev, { 
-          text: "Thanks for your message! Our team will get back to you soon about career opportunities.", 
-          sender: "bot" 
-        }]);
-      }, 1000);
-    }
-  };
-
-  useEffect(() => {
-    if (chatContainerRef.current) {
-      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
-    }
-  }, [chatMessages]);
-// This state manages which section is currently active
-// When integrating other pages, you'll conditionally render components based on activeSection
-
+  // Navigation without Careers (removed)
   const navigationItems = [
-  { id: "home", label: "Home", teamMember: "Jay" },
-  { id: "contact", label: "Contact", teamMember: "Birjesh" },
-  { id: "about", label: "About", teamMember: "Nandni" },
-  { id: "products", label: "Products", teamMember: "Medhanshi" },
-  { id: "services", label: "Services", teamMember: "Harsh" },
-  { id: "blogs", label: "Blogs", teamMember: "Priyanshu" },
-  { id: "careers", label: "Careers", teamMember: "AI Assistant" },
-  // Add more pages here as your team develops them
-];
+    { id: "home", label: "Home", teamMember: "Jay" },
+    { id: "contact", label: "Contact", teamMember: "Birjesh" },
+    { id: "about", label: "About", teamMember: "Nandni" },
+    { id: "products", label: "Products", teamMember: "Medhanshi" },
+    { id: "services", label: "Services", teamMember: "Harsh" },
+    { id: "blogs", label: "Blogs", teamMember: "Priyanshu" },
+    // Add more pages here as your team develops them
+  ];
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -68,7 +41,6 @@ const HomePage = () => {
             />
             <span className="text-xl font-bold">Maghraut Technologies</span>
           </div>
-
           <nav className="hidden md:flex gap-6">
             {navigationItems.map((item) => (
               <a
@@ -84,42 +56,28 @@ const HomePage = () => {
               </a>
             ))}
           </nav>
-
           <div className="hidden md:flex items-center gap-4">
             <Button>Get Started</Button>
-            <Button variant="outline" onClick={() => setActiveSection("careers")}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-              </svg>
-              Chat with AI
-            </Button>
+            {/* Removed Chat with AI button */}
           </div>
-
-          <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setActiveSection("careers")}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-              </svg>
-            </Button>
-            <Button variant="ghost" size="icon" className="md:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-6 w-6"
-              >
-                <line x1="4" x2="20" y1="12" y2="12" />
-                <line x1="4" x2="20" y1="6" y2="6" />
-                <line x1="4" x2="20" y1="18" y2="18" />
-              </svg>
-            </Button>
-          </div>
+          <Button variant="ghost" size="icon" className="md:hidden">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-6 w-6"
+            >
+              <line x1="4" x2="20" y1="12" y2="12" />
+              <line x1="4" x2="20" y1="6" y2="6" />
+              <line x1="4" x2="20" y1="18" y2="18" />
+            </svg>
+          </Button>
         </div>
       </header>
 
@@ -131,9 +89,9 @@ const HomePage = () => {
             <span className="text-primary">Cloud, Data and AI</span>
           </h1>
           <p className="mt-6 max-w-[700px] text-lg text-muted-foreground sm:text-xl">
-            At Maghraut Technologies, we offer end-to-end Salesforce services 
-            tailored to your business needs. From implementation to AI automation, 
-            our team helps you transform your processes with the power of Cloud, 
+            At Maghraut Technologies, we offer end-to-end Salesforce services
+            tailored to your business needs. From implementation to AI automation,
+            our team helps you transform your processes with the power of Cloud,
             Data, and AI.
           </p>
           <div className="mt-8 flex gap-4">
@@ -153,11 +111,10 @@ const HomePage = () => {
               Services
             </h2>
             <p className="mt-4 max-w-[700px] mx-auto text-muted-foreground">
-              Empowering businesses to harness the full potential of Salesforce through 
+              Empowering businesses to harness the full potential of Salesforce through
               intelligent implementation, seamless integration, and AI-driven automation.
             </p>
           </div>
-
           <div className="mt-12 grid gap-8 md:grid-cols-3">
             <Card>
               <CardHeader>
@@ -174,7 +131,6 @@ const HomePage = () => {
                 />
               </CardContent>
             </Card>
-
             <Card>
               <CardHeader>
                 <CardTitle>AI Automation</CardTitle>
@@ -190,7 +146,6 @@ const HomePage = () => {
                 />
               </CardContent>
             </Card>
-
             <Card>
               <CardHeader>
                 <CardTitle>Data Cloud Integration</CardTitle>
@@ -218,12 +173,11 @@ const HomePage = () => {
               Products
             </h2>
             <p className="mt-4 max-w-[700px] mx-auto text-muted-foreground">
-              Unlock the ideal starting point for your business journey—Salesforce 
-              offers a flexible suite of products that adapt to your needs and scale 
+              Unlock the ideal starting point for your business journey—Salesforce
+              offers a flexible suite of products that adapt to your needs and scale
               effortlessly.
             </p>
           </div>
-
           <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             <Card className="text-center">
               <CardHeader>
@@ -240,7 +194,6 @@ const HomePage = () => {
                 </p>
               </CardContent>
             </Card>
-
             <Card className="text-center">
               <CardHeader>
                 <CardTitle>Sales Cloud</CardTitle>
@@ -256,7 +209,6 @@ const HomePage = () => {
                 </p>
               </CardContent>
             </Card>
-
             <Card className="text-center">
               <CardHeader>
                 <CardTitle>Service Cloud</CardTitle>
@@ -272,7 +224,6 @@ const HomePage = () => {
                 </p>
               </CardContent>
             </Card>
-
             <Card className="text-center">
               <CardHeader>
                 <CardTitle>Slack Integration</CardTitle>
@@ -307,11 +258,9 @@ const HomePage = () => {
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
                 Upholds Commitment to Giving Back with Pledge 1% Partnership
               </h2>
-              <p className="mt-4 text-lg">
-                A Small Pledge. A Bold Promise.
-              </p>
+              <p className="mt-4 text-lg">A Small Pledge. A Bold Promise.</p>
               <p className="mt-4">
-                At Maghraut Technologies, we've always believed that true innovation 
+                At Maghraut Technologies, we've always believed that true innovation
                 isn't just measured by the solutions we build—but by the lives we touch.
               </p>
               <Button variant="secondary" className="mt-6">
@@ -331,9 +280,9 @@ const HomePage = () => {
                 From the Founder's Desk
               </h2>
               <blockquote className="mt-6 border-l-4 border-primary pl-6 italic">
-                "At Maghraut Technologies, we believe in pushing boundaries and 
-                shaping a better digital future. Our journey began with a vision 
-                to empower organizations with cutting-edge solutions and personalized 
+                "At Maghraut Technologies, we believe in pushing boundaries and
+                shaping a better digital future. Our journey began with a vision
+                to empower organizations with cutting-edge solutions and personalized
                 strategies."
               </blockquote>
               <p className="mt-4 font-semibold">— Vijay Kumar Soni, CEO</p>
@@ -350,112 +299,12 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Main Content Area - Add your page components here */}
-      {activeSection === "home" && (
-        <>
-          {/* Hero Section */}
-          <section className="container mx-auto px-4 py-16 md:py-24">
-            {/* ... existing hero content ... */}
-          </section>
-
-          {/* Services Section */}
-          <section className="bg-muted py-16 md:py-24">
-            {/* ... existing services content ... */}
-          </section>
-
-          {/* Products Section */}
-          <section className="py-16 md:py-24">
-            {/* ... existing products content ... */}
-          </section>
-
-          {/* Pledge 1% Section */}
-          <section className="bg-primary text-primary-foreground py-16 md:py-24">
-            {/* ... existing pledge content ... */}
-          </section>
-
-          {/* Founder's Section */}
-          <section className="py-16 md:py-24">
-            {/* ... existing founder content ... */}
-          </section>
-        </>
-      )}
-
       {/* Add other page components here */}
-      {activeSection === "contact" && (
-        <div>Contact Page Content (by Birjesh)</div>
-      )}
-      
-      {activeSection === "about" && (
-        <div>About Page Content (by Nandni)</div>
-      )}
-      
-      {activeSection === "products" && (
-        <div>Products Page Content (by Medhanshi)</div>
-      )}
-      
-      {activeSection === "services" && (
-        <div>Services Page Content (by Harsh)</div>
-      )}
-      
-      {activeSection === "blogs" && (
-        <div>Blogs Page Content (by Priyanshu)</div>
-      )}
-      
-      {activeSection === "careers" && (
-        <div className="container mx-auto px-4 py-16">
-          <h2 className="text-3xl font-bold text-center mb-8">Careers at Maghraut Technologies</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <h3 className="text-xl font-semibold mb-4">Join Our Team</h3>
-              <p className="text-muted-foreground mb-6">
-                We're always looking for talented individuals to join our growing team. 
-                Explore opportunities in Salesforce, AI, cloud technologies, and more.
-              </p>
-              <div className="space-y-4">
-                <div className="p-4 bg-muted rounded-lg">
-                  <h4 className="font-semibold">Salesforce Developer</h4>
-                  <p className="text-sm text-muted-foreground">Full-time • Remote</p>
-                </div>
-                <div className="p-4 bg-muted rounded-lg">
-                  <h4 className="font-semibold">AI/ML Engineer</h4>
-                  <p className="text-sm text-muted-foreground">Full-time • Hybrid</p>
-                </div>
-                <div className="p-4 bg-muted rounded-lg">
-                  <h4 className="font-semibold">Cloud Solutions Architect</h4>
-                  <p className="text-sm text-muted-foreground">Full-time • Remote</p>
-                </div>
-              </div>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold mb-4">Career Chatbot Assistant</h3>
-              <div className="bg-background border rounded-lg p-4 h-96">
-                <div ref={chatContainerRef} className="h-80 overflow-y-auto mb-4 space-y-2">
-                  {chatMessages.map((message, index) => (
-                    <div key={index} className={message.sender === "user" ? "text-right" : "text-left"}>
-                      <div className={message.sender === "user" 
-                        ? "bg-primary text-primary-foreground rounded-lg p-2 inline-block" 
-                        : "bg-muted text-foreground rounded-lg p-2 inline-block"}>
-                        {message.text}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div className="flex gap-2">
-                  <input 
-                    type="text" 
-                    placeholder="Ask about careers..." 
-                    className="flex-1 px-3 py-2 border rounded-md"
-                    value={inputMessage}
-                    onChange={(e) => setInputMessage(e.target.value)}
-                    onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                  />
-                  <Button onClick={handleSendMessage}>Send</Button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      {activeSection === "contact" && <div>Contact Page Content (by Birjesh)</div>}
+      {activeSection === "about" && <div>About Page Content (by Nandni)</div>}
+      {activeSection === "products" && <div>Products Page Content (by Medhanshi)</div>}
+      {activeSection === "services" && <div>Services Page Content (by Harsh)</div>}
+      {activeSection === "blogs" && <div>Blogs Page Content (by Priyanshu)</div>}
 
       {/* Footer */}
       <footer className="bg-muted py-12">
@@ -467,28 +316,26 @@ const HomePage = () => {
                 Insighting Every Process with Cloud, Data and AI
               </p>
             </div>
-            
+
             <div>
               <h3 className="text-lg font-semibold mb-4">Contact Info</h3>
               <p className="text-muted-foreground">
-                📍 Registered Office: Bhukhan, No-6/D-765, Sector 6, Gomti Nagar, 
+                📍 Registered Office: Bhukhan, No-6/D-765, Sector 6, Gomti Nagar,
                 Lucknow, Uttar Pradesh, India, 226010
               </p>
               <p className="text-muted-foreground mt-2">
-                📩 info@maghraut.com
+                📩 <a href="mailto:info@maghraut.com">info@maghraut.com</a>
               </p>
-              <p className="text-muted-foreground">
-                📲 +917991989898
-              </p>
+              <p className="text-muted-foreground">📲 +917991989898</p>
             </div>
-            
+
             <div>
               <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
               <ul className="space-y-2">
                 {navigationItems.map((item) => (
                   <li key={item.id}>
-                    <a 
-                      href={`#${item.id}`} 
+                    <a
+                      href={`#${item.id}`}
                       className="text-muted-foreground hover:text-primary"
                       onClick={(e) => {
                         e.preventDefault();
@@ -501,7 +348,7 @@ const HomePage = () => {
                 ))}
               </ul>
             </div>
-            
+
             <div>
               <h3 className="text-lg font-semibold mb-4">Connect With Us</h3>
               <div className="flex gap-4">
