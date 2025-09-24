@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Company Blog</title>
+  <style>
+    :root{
+      --accent: #2b6cb0;
+      --muted: #555;
+    }
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom right, #4b0082, #ff66cc);
+      color:#222;
+      position: relative;
+    }
+    body::before {
+      content:"";
+      position: fixed;
+      top:0; left:0; right:0; bottom:0;
+      background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1650&q=80') no-repeat center center fixed;
+      background-size: cover;
+      opacity: 0.15;
+      z-index: -1;
+    }
+
+    /* Blog wrapper */
+    .blog-container{
+      max-width:1100px;
+      margin:40px auto;
+      display:grid;
+      grid-template-columns:3fr 1fr;
+      gap:20px;
+      padding:0 16px;
+    }
+
+    .post{
+      background: rgba(255,255,255,0.95);
+      padding:20px;
+      border-radius:10px;
+      box-shadow:0 12px 24px rgba(0,0,0,0.12);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      margin-bottom:24px;
+    }
+    .post:hover{
+      transform: translateY(-4px);
+      box-shadow:0 16px 36px rgba(0,0,0,0.16);
+    }
+    .post img{
+      width:100%;
+      height:auto;
+      border-radius:8px;
+    }
+    .post h2{
+      margin:14px 0 6px;
+    }
+    .meta{
+      font-size:13px;
+      color: var(--muted);
+    }
+    .excerpt{
+      color:#444;
+      margin-top:10px;
+    }
+    .readmore{
+      display:inline-block;
+      margin-top:12px;
+      padding:8px 12px;
+      background: var(--accent);
+      color:#fff;
+      border-radius:6px;
+      text-decoration:none;
+      font-size:14px;
+    }
+
+    /* Sidebar */
+    .sidebar{
+      background: rgba(255,255,255,0.95);
+      padding:20px;
+      border-radius:10px;
+      box-shadow:0 12px 24px rgba(0,0,0,0.12);
+      height: fit-content;
+    }
+    .sidebar h3{margin-top:0;}
+
+    @media (max-width:800px){
+      .blog-container{
+        grid-template-columns:1fr;
+        padding:0 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Blog Section -->
+  <section class="blog-container">
+    <main>
+      <article class="post">
+        <img src="https://via.placeholder.com/900x300.png?text=Featured+Image+1" alt="Post 1">
+        <h2><a href="post.html" style="color:inherit; text-decoration:none">How to build a fast static blog</a></h2>
+        <p class="meta">By Admin — Sept 23, 2025</p>
+        <p class="excerpt">A concise guide to create a fast and responsive static blog using plain HTML and CSS. Learn best practices for layout, images and performance.</p>
+        <a class="readmore" href="post.html">Read more →</a>
+      </article>
+
+      <article class="post">
+        <img src="https://via.placeholder.com/900x300.png?text=Featured+Image+2" alt="Post 2">
+        <h2><a href="post.html" style="color:inherit; text-decoration:none">Design tips for readable blog posts</a></h2>
+        <p class="meta">By Admin — Sept 20, 2025</p>
+        <p class="excerpt">Small typography and spacing tweaks can dramatically improve readability. We'll show practical examples you can copy.</p>
+        <a class="readmore" href="post.html">Read more →</a>
+      </article>
+    </main>
+
+    <aside class="sidebar">
+      <h3>Search</h3>
+      <input placeholder="Search posts..." style="width:100%;padding:8px;border-radius:6px;border:1px solid #ddd;margin-bottom:14px">
+
+      <h3>Categories</h3>
+      <ul style="padding-left:18px;color:#333">
+        <li>Web Development</li>
+        <li>Design</li>
+        <li>Performance</li>
+      </ul>
+
+      <h3 style="margin-top:16px">About</h3>
+      <p style="margin:0;color:var(--muted)">Short bio or site description – keep it one or two lines for a clean sidebar.</p>
+    </aside>
+  </section>
+
+</body>
+</html>
