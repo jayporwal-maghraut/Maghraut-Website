@@ -18,15 +18,7 @@ const HomePage = () => {
   const [activeSection, setActiveSection] = useState("home");
 
   // Navigation without Careers (removed)
-  const navigationItems = [
-    { id: "home", label: "Home", teamMember: "Jay" },
-    { id: "contact", label: "Contact", teamMember: "Birjesh" },
-    { id: "about", label: "About", teamMember: "Nandni" },
-    { id: "products", label: "Products", teamMember: "Medhanshi" },
-    { id: "services", label: "Services", teamMember: "Harsh" },
-    { id: "blogs", label: "Blogs", teamMember: "Priyanshu" },
-    // Add more pages here as your team develops them
-  ];
+ 
 
   return (
     <div className="min-h-screen bg-background text-foreground">
