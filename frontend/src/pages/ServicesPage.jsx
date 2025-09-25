@@ -2,6 +2,40 @@ import React, { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "/components/ui/card";
 import { Button } from "/components/ui/button";
 
+// Navbar Component
+const Navbar = () => (
+  <nav className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border/40 sticky top-0 z-50">
+    <div className="container mx-auto px-4 py-4 max-w-7xl">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center space-x-2">
+          <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+            <span className="text-primary-foreground font-bold text-sm">MT</span>
+          </div>
+          <div>
+            <h1 className="text-xl font-bold text-foreground">Maghraut Technologies</h1>
+            <p className="text-xs text-muted-foreground">Salesforce Excellence</p>
+          </div>
+        </div>
+        
+        <div className="hidden md:flex items-center space-x-6">
+          <a href="#services" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">Services</a>
+          <a href="#about" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">About</a>
+          <a href="#contact" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">Contact</a>
+          <Button size="sm" className="bg-primary hover:bg-primary/90">
+            Get Started
+          </Button>
+        </div>
+        
+        <Button variant="ghost" size="sm" className="md:hidden">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </Button>
+      </div>
+    </div>
+  </nav>
+);
+
 const footerInfo = {
   company: "Maghraut Technologies Private Limited",
   address: [
@@ -165,48 +199,83 @@ const ServiceSection = ({
   </div>
 );
 
+// Footer Component  
 const Footer = () => (
-  <footer className="bg-gradient-to-br from-muted to-muted/80 p-6 md:p-8 rounded-xl shadow-lg border border-border/50">
-    <div className="space-y-6">
-      <div>
-        <h3 className="font-bold text-lg text-foreground mb-3 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-          {footerInfo.company}
-        </h3>
-        {footerInfo.address.map((line, i) => (
-          <p key={i} className="text-sm text-muted-foreground leading-relaxed">{line}</p>
-        ))}
+  <footer className="bg-gradient-to-br from-muted to-muted/80 border-t border-border/50 mt-20">
+    <div className="container mx-auto px-4 py-12 max-w-7xl">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* Company Info */}
+        <div className="lg:col-span-2">
+          <div className="flex items-center space-x-2 mb-4">
+            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+              <span className="text-primary-foreground font-bold text-sm">MT</span>
+            </div>
+            <h3 className="font-bold text-lg text-foreground bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+              Maghraut Technologies
+            </h3>
+          </div>
+          <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+            Your trusted partner for Salesforce excellence. We help businesses transform their customer relationships through innovative CRM solutions.
+          </p>
+          {footerInfo.address.map((line, i) => (
+            <p key={i} className="text-sm text-muted-foreground leading-relaxed">{line}</p>
+          ))}
+        </div>
+        
+        {/* Services */}
+        <div>
+          <h4 className="font-semibold text-foreground mb-4">Services</h4>
+          <ul className="space-y-2">
+            <li><a href="#strategy" className="text-sm text-muted-foreground hover:text-primary transition-colors">Strategy & AI</a></li>
+            <li><a href="#managed" className="text-sm text-muted-foreground hover:text-primary transition-colors">Managed Services</a></li>
+            <li><a href="#integration" className="text-sm text-muted-foreground hover:text-primary transition-colors">Integration & Data</a></li>
+            <li><a href="#implementation" className="text-sm text-muted-foreground hover:text-primary transition-colors">Implementation</a></li>
+          </ul>
+        </div>
+        
+        {/* Contact */}
+        <div>
+          <h4 className="font-semibold text-foreground mb-4">Contact</h4>
+          <div className="space-y-2">
+            <a 
+              href={footerInfo.contact[0].href} 
+              className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium hover:underline block"
+            >
+              {footerInfo.contact[0].value}
+            </a>
+            <a 
+              href={footerInfo.contact[1].href} 
+              className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium hover:underline block"
+            >
+              {footerInfo.contact[1].value}
+            </a>
+          </div>
+          
+          <div className="flex gap-3 mt-4">
+            {footerInfo.socialLinks.map(({ href, icon, ariaLabel }, index) => (
+              <a 
+                key={index} 
+                href={href} 
+                aria-label={ariaLabel} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="p-2 rounded-full bg-primary/10 text-muted-foreground hover:text-primary hover:bg-primary/20 transition-all duration-300 hover:scale-110"
+              >
+                {icon}
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
       
-      <div className="text-sm leading-relaxed">
-        <span className="text-muted-foreground">Contact us at </span>
-        <a 
-          href={footerInfo.contact[0].href} 
-          className="text-primary hover:text-primary/80 transition-colors font-medium hover:underline"
-        >
-          {footerInfo.contact[0].value}
-        </a>
-        <span className="text-muted-foreground"> or </span>
-        <a 
-          href={footerInfo.contact[1].href} 
-          className="text-primary hover:text-primary/80 transition-colors font-medium hover:underline"
-        >
-          {footerInfo.contact[1].value}
-        </a>
-      </div>
-      
-      <div className="flex gap-3 pt-3 flex-wrap">
-        {footerInfo.socialLinks.map(({ href, icon, ariaLabel }, index) => (
-          <a 
-            key={index} 
-            href={href} 
-            aria-label={ariaLabel} 
-            target="_blank" 
-            rel="noreferrer" 
-            className="p-2 rounded-full bg-primary/10 text-muted-foreground hover:text-primary hover:bg-primary/20 transition-all duration-300 hover:scale-110"
-          >
-            {icon}
-          </a>
-        ))}
+      <div className="border-t border-border/30 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p className="text-sm text-muted-foreground">
+          © 2024 {footerInfo.company}. All rights reserved.
+        </p>
+        <div className="flex space-x-6 mt-4 md:mt-0">
+          <a href="#privacy" className="text-sm text-muted-foreground hover:text-primary transition-colors">Privacy Policy</a>
+          <a href="#terms" className="text-sm text-muted-foreground hover:text-primary transition-colors">Terms of Service</a>
+        </div>
       </div>
     </div>
   </footer>
@@ -326,6 +395,7 @@ export default function SalesforceServices() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
+      <Navbar />
       <div className="container mx-auto px-4 py-8 md:py-12 max-w-7xl">
         {/* Navigation */}
         <div className="mb-12">
@@ -358,16 +428,16 @@ export default function SalesforceServices() {
           iconAlt={currentService.iconAlt}
         />
 
-        {/* Footer and Map */}
-        <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-8 mt-20">
-          <div className="order-2 lg:order-1">
-            <Footer />
+        {/* Map Section */}
+        <div className="mt-20">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-bold text-primary mb-4">Visit Our Office</h2>
+            <p className="text-muted-foreground">Located in the heart of Lucknow, we're here to serve you</p>
           </div>
-          <div className="order-1 lg:order-2">
-            <MapEmbed />
-          </div>
+          <MapEmbed />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
